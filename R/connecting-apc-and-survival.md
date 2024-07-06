@@ -4,7 +4,6 @@ age-period cohort analysis
 John Fee
 2024-07-03
 
-- [To do](#to-do)
 - [Continuous survival times](#continuous-survival-times)
   - [Survival function](#survival-function)
   - [Hazard rate](#hazard-rate)
@@ -12,18 +11,6 @@ John Fee
   - [AFT models](#aft-models)
 - [Discrete failure times](#discrete-failure-times)
   - [Survival function](#survival-function-1)
-
-# To do
-
-- Explore connection between survival models and Poisson regression
-  - [this](https://stats.stackexchange.com/questions/8117/does-cox-regression-have-an-underlying-poisson-distribution/8118#8118)
-    stackexchange answer might be helpful - it’s Cox regression specific
-    though
-- Use Tutz’s textbook on modeling discrete time to event data to
-  identify the connection between discrete and continuous time
-- Then build off of Goepp et al’s article “Regularized hazard estimation
-  for age-period-cohort analysis” to identify how we could estimate an
-  APC model using continuously observed data
 
 # Continuous survival times
 
@@ -95,9 +82,9 @@ $$\begin{equation}
 Y = \ln X = \mu + \mathbf{\beta}'\mathbf{Z} + \sigma W
 \end{equation}$$
 
-where $\mu$ is an intercept term, $\beta$ is a vector of regression
-coefficients, and $W$ is a r.v. representing the error distribution.
-What is $\sigma$ - a constant?
+where $\mu$ is a location parameter, $\sigma$ is a scale parameter,
+$\beta$ is a vector of regression coefficients, and $W$ is a r.v.
+representing the error distribution.
 
 Why is this called Accelerated Failure Time? Consider the case where
 $\mathbf{Z} = \mathbf{0}$. Then $$\begin{align}
@@ -115,7 +102,9 @@ P(X > x | \mathbf{Z}) &= P(\exp \left(\mu + \mathbf{\beta}'\mathbf{Z} + \sigma W
 \end{align}$$
 
 Note that the left side quantity is $X | \mathbf{Z} = \mathbf{0}$, and
-the right side quantity is a constant. Therefore $$\begin{align}
+the right side quantity is a constant. Therefore
+
+$$\begin{align}
 P(X > x | \mathbf{Z})  &= S_{0}(x \exp (-\mathbf{\beta}'\mathbf{Z}))
 \end{align}$$
 
